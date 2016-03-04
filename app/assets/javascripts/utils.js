@@ -3,7 +3,8 @@ amountFormat = function(amount) {
 }
 
 dateFormat = function(d) {
-  var date = new Date(d);
+  var parts = d.split('-');
+  var date =  new Date(parts[0], parts[1]-1, parts[2]); // Note: months are 0-based
   return date.toLocaleDateString("pt-BR")
 }
 

@@ -10,20 +10,6 @@ var Record = React.createClass({
         edit: !this.state.edit
       });
     },
-    handleDelete: function(e) {
-      e.preventDefault();
-      //jquery has no $.delete shortcut method
-      return $.ajax({
-        method: 'DELETE',
-        url: "/records/" + this.props.record.id,
-        dataType: 'JSON',
-        success: (function(_this) {
-          return function() {
-            return _this.props.handleDeleteRecord(_this.props.record);
-          };
-        })(this)
-      });
-    },
     handleEdit: function(e) {
       //todo: validate the data.
       var data;
@@ -58,9 +44,6 @@ var Record = React.createClass({
                 <td>
                   <a className="btn btn-default" onClick={this.handleToggle}>
                     <span className="glyphicon glyphicon-pencil" ariaHidden="true" title="Edit"></span>
-                  </a>
-                  <a className="btn btn-danger" onClick={this.handleDelete}>
-                    <span className="glyphicon glyphicon-trash" ariaHidden="true" title="Delete"></span>
                   </a>
                 </td>
             </tr>;

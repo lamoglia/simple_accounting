@@ -1,7 +1,19 @@
 class RecordsController < ApplicationController
 
   def index
-    @records = Record.order('records.date ASC').all
+    #redirects to monthly data of current month.
+    today = Date.today
+    redirect_to action: 'monthly', year: today.year, month: today.month
+  end
+
+  def monthly
+    require 'date'
+
+    first_date = Date.new(params[:year].to_i, params[:month].to_i,1)
+    last_date = first_date.next_month.prev_day
+    @year = params[:year]
+    @month = Date::MONTHNAMES[params[:month].to_i]
+    @records = Record.where(date: first_date .. last_date)
   end
 
   def create
