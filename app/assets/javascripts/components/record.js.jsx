@@ -10,6 +10,9 @@ var Record = React.createClass({
         edit: !this.state.edit
       });
     },
+    total: function() {
+      return this.props.record.stay + this.props.record.consumption;
+    },
     handleEdit: function(e) {
       //todo: validate the data.
       var data;
@@ -37,10 +40,11 @@ var Record = React.createClass({
       });
     },
     recordRow: function () {
-      return <tr>
+      return <tr onClick={this.handleToggle}>
                 <td>{dateFormat(this.props.record.date)}</td>
                 <td>{amountFormat(this.props.record.stay)}</td>
                 <td>{amountFormat(this.props.record.consumption)}</td>
+                <td>{amountFormat(this.total())}</td>
                 <td>
                   <a className="btn btn-default" onClick={this.handleToggle}>
                     <span className="glyphicon glyphicon-pencil" ariaHidden="true" title="Edit"></span>
@@ -53,12 +57,13 @@ var Record = React.createClass({
                 <td>{dateFormat(this.props.record.date)}</td>
                 <td><input className="form-control" type="number" defaultValue={this.props.record.stay} ref="stay"></input></td>
                 <td><input className="form-control" type="number" defaultValue={this.props.record.consumption} ref="consumption"></input></td>
+                <td>{amountFormat(this.total())}</td>
                 <td>
-                  <a className="btn btn-default" onClick={this.handleEdit}>
+                  <a className="btn btn-success" onClick={this.handleEdit}>
                     <span className="glyphicon glyphicon-ok" ariaHidden="true" title="Update"></span>
                   </a>
                   <a className="btn btn-danger" onClick={this.handleToggle}>
-                    <span className="glyphicon glyphicon-remove" ariaHidden="true" title="Cancel"></span>
+                    <span className="glyphicon glyphicon-remove" ariaHidden="true" title="Undo"></span>
                   </a>
                 </td>
             </tr>;

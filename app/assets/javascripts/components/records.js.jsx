@@ -56,7 +56,6 @@ var Records = React.createClass({
     }
 
     return  <div className="records">
-              <h2 className="title">Records</h2>
               <div className="row">
                 <AmountBox type="success" amount={this.stay()} text="Total stay"/>
                 <AmountBox type="success" amount={this.consumption()} text="Total consumption"/>
@@ -68,8 +67,9 @@ var Records = React.createClass({
                   <thead>
                     <tr>
                       <th className="col-xs-2">Date</th>
-                      <th className="col-xs-4">Stay</th>
-                      <th className="col-xs-4">Consumption</th>
+                      <th className="col-xs-2">Stay</th>
+                      <th className="col-xs-2">Consumption</th>
+                      <th className="col-xs-4">Total</th>
                       <th className="col-xs-2">Actions</th>
                     </tr>
                   </thead>

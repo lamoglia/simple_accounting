@@ -8,12 +8,25 @@ class RecordsController < ApplicationController
 
   def monthly
     require 'date'
-
     first_date = Date.new(params[:year].to_i, params[:month].to_i,1)
     last_date = first_date.next_month.prev_day
-    @year = params[:year]
-    @month = Date::MONTHNAMES[params[:month].to_i]
+    
+    @date = first_date
     @records = Record.where(date: first_date .. last_date)
+  end
+
+  def yearly
+    current_date = Date.new(params[:year].to_i, 1, 1)
+    
+    @year = params[:year]
+    @summary = Hash.new
+
+    while current_date.year == params[:year].to_i do
+      sum_stay = Record.where(:date => current_date.beginning_of_month .. current_date.end_of_month).sum(:stay);
+      sum_consumption = Record.where(:date => current_date.beginning_of_month .. current_date.end_of_month).sum(:consumption);
+      @summary[current_date.month] = {stay: sum_stay, consumption: sum_consumption}
+      current_date = current_date.next_month
+    end
   end
 
   def create

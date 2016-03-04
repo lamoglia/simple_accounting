@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  get    'records/:year/:month'   => 'records#monthly'
+  root 'records#index'
+
+  get 'records/:year/:month', to: 'records#monthly', as: 'monthly'
+
+  get 'records/:year', to: 'records#yearly', as: 'yearly'
 
   resources :records
   # The priority is based upon order of creation: first created -> highest priority.

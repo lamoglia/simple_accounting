@@ -1,0 +1,29 @@
+<%# app/views/records/yearly.html.erb %>
+<h2><%= @year %></h2>
+<%= link_to "<< #{@year.to_i - 1}", yearly_path(year: @year.to_i - 1), title: "#{@year.to_i - 1}" %>&nbsp;|
+<%= link_to "#{@year.to_i + 1} >>", yearly_path(year: @year.to_i + 1), title: "#{@year.to_i + 1}" %>
+</br>
+</br>
+</br>
+<div class="table-responsive">
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th class="col-xs-2">Month</th>
+        <th class="col-xs-3">Stay</th>
+        <th class="col-xs-3">Consumption</th>
+        <th class="col-xs-4">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @summary.each do |key, value| %>
+        <tr>
+          <td><%= link_to "#{Date::MONTHNAMES[key]}", monthly_path(year: @year, month: key) %></td>
+          <td><%= number_to_currency(value[:stay], :unit => "R$") %></td>
+          <td><%= number_to_currency(value[:consumption], :unit => "R$") %></td>
+          <td><%= number_to_currency(value[:consumption] + value[:stay], :unit => "R$") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

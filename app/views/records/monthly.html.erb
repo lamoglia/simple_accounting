@@ -1,3 +1,8 @@
 <%# app/views/records/show.html.erb %>
-<h2><%=@month%> / <%=@year%></h2>
+<h2><%= Date::MONTHNAMES[@date.month.to_i] %> / <%= link_to "#{@date.year}", yearly_path(year: @date.year) %></h2>
+<%= link_to "<< #{Date::MONTHNAMES[@date.prev_month.month.to_i]}", monthly_path(year: @date.prev_month.year , month: @date.prev_month.month ), title: Date::MONTHNAMES[@date.prev_month.month.to_i] %>&nbsp;|
+<%= link_to "#{Date::MONTHNAMES[@date.next_month.month.to_i]} >>", monthly_path(year: @date.next_month.year , month: @date.next_month.month ), title: Date::MONTHNAMES[@date.next_month.month.to_i] %>
+</br>
+</br>
+</br>
 <%= react_component 'Records', { data: @records } %>
