@@ -6,8 +6,8 @@
 <%= high_chart("some_id", @chart) %>
 </br>
 <div class="row">
-  <%= react_component 'AmountBox', { type: "success", amount: @summary.values.reduce(0) {|sum,val| sum + val[:stay]}, text: "Total stay"} %>
-  <%= react_component 'AmountBox', { type: "success", amount: @summary.values.reduce(0) {|sum,val| sum + val[:consumption]}, text: "Total consumption"} %>
+  <%= react_component 'AmountBox', { type: "success", amount: @summary.values.reduce(0) {|sum,val| sum + val[:stay]}, text: "Total estadia"} %>
+  <%= react_component 'AmountBox', { type: "success", amount: @summary.values.reduce(0) {|sum,val| sum + val[:consumption]}, text: "Total consumo"} %>
   <%= react_component 'AmountBox', { type: "info", amount: @summary.values.reduce(0) {|sum,val| sum + val[:consumption] + val[:stay]}, text: "Total"} %>
 </div>
 <hr/>
@@ -15,16 +15,16 @@
   <table class="table table-bordered table-hover">
     <thead>
       <tr>
-        <th class="col-xs-2">Month</th>
-        <th class="col-xs-3">Stay</th>
-        <th class="col-xs-3">Consumption</th>
+        <th class="col-xs-2">Mês</th>
+        <th class="col-xs-3">Estadia</th>
+        <th class="col-xs-3">Consumo</th>
         <th class="col-xs-4">Total</th>
       </tr>
     </thead>
     <tbody>
       <% @summary.each do |key, value| %>
         <tr onClick="window.location = $(this).find('a').attr('href');">
-          <td><%= link_to "#{Date::MONTHNAMES[key]}", monthly_path(year: @year, month: key) %></td>
+          <td><%= link_to "#{I18n.t("date.month_names")[key]}", monthly_path(year: @year, month: key) %></td>
           <td><%= number_to_currency(value[:stay], :unit => "R$") %></td>
           <td><%= number_to_currency(value[:consumption], :unit => "R$") %></td>
           <td><%= number_to_currency(value[:consumption] + value[:stay], :unit => "R$") %></td>

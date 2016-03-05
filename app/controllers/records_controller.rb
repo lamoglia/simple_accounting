@@ -83,10 +83,10 @@ class RecordsController < ApplicationController
       end
 
       LazyHighCharts::HighChart.new('graph') do |f|
-        f.title(text: "Values by day")
+        f.title(text: "Valores por dia")
         f.xAxis(categories: days)
-        f.series(name: "Stay", data: stays)
-        f.series(name: "Consumption", data: consumptions)
+        f.series(name: "Estadia", data: stays)
+        f.series(name: "Consumo", data: consumptions)
 
         f.yAxis [
           {title: {text: "Valor (R$)"}, min: 0 }
@@ -99,10 +99,10 @@ class RecordsController < ApplicationController
 
     def build_yearly_chart(all_total_stay, all_total_consumption)
       LazyHighCharts::HighChart.new('graph') do |f|
-        f.title(text: "Values by month")
+        f.title(text: "Valores por mês")
         f.xAxis(categories: Date::MONTHNAMES.slice(1,12))
-        f.series(name: "Stay", data: all_total_stay)
-        f.series(name: "Consumption", data: all_total_consumption)
+        f.series(name: "Estadia", data: all_total_stay)
+        f.series(name: "Consumo", data: all_total_consumption)
 
         f.yAxis [
           {title: {text: "Valor (R$)"}, min: 0 }

@@ -57,8 +57,8 @@ var Records = React.createClass({
 
     return  <div className="records">
               <div className="row">
-                <AmountBox type="success" amount={this.stay()} text="Total stay"/>
-                <AmountBox type="success" amount={this.consumption()} text="Total consumption"/>
+                <AmountBox type="success" amount={this.stay()} text="Total estadia"/>
+                <AmountBox type="success" amount={this.consumption()} text="Total consumo"/>
                 <AmountBox type="info" amount={this.total()} text="Total"/>
               </div>
               <hr/>
@@ -66,11 +66,11 @@ var Records = React.createClass({
                 <table className="table table-bordered table-hover">
                   <thead>
                     <tr>
-                      <th className="col-xs-1">Day</th>
-                      <th className="col-xs-3">Stay</th>
-                      <th className="col-xs-3">Consumption</th>
+                      <th className="col-xs-1">Dia</th>
+                      <th className="col-xs-3">Estadia</th>
+                      <th className="col-xs-3">Consumo</th>
                       <th className="col-xs-3">Total</th>
-                      <th className="col-xs-2">Actions</th>
+                      <th className="col-xs-2">Ações</th>
                     </tr>
                   </thead>
                   <tbody>

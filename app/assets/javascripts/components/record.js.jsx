@@ -71,10 +71,10 @@ var Record = React.createClass({
                 <td>{amountFormat(this.total())}</td>
                 <td>
                   <a className="btn btn-success" onClick={this.handleEdit}>
-                    <span className="glyphicon glyphicon-ok" ariaHidden="true" title="Update"></span>
+                    <span className="glyphicon glyphicon-ok" ariaHidden="true" title="Salvar"></span>
                   </a>&nbsp;
                   <a className="btn btn-danger" onClick={this.handleToggle}>
-                    <span className="glyphicon glyphicon-remove" ariaHidden="true" title="Undo"></span>
+                    <span className="glyphicon glyphicon-remove" ariaHidden="true" title="Desfazer"></span>
                   </a>
                 </td>
             </tr>;
