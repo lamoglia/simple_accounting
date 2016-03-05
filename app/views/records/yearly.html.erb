@@ -19,8 +19,8 @@
     <table class="table table-bordered table-hover">
       <thead>
         <tr>
-          <th class="col-xs-2">Mês</th>
-          <th class="col-xs-3">Estadia</th>
+          <th class="col-sm-2 col-xs-1">Mês</th>
+          <th class="col-sm-3 col-xs-4">Estadia</th>
           <th class="col-xs-3">Consumo</th>
           <th class="col-xs-4">Total</th>
         </tr>
@@ -28,7 +28,8 @@
       <tbody>
         <% @summary.each do |key, value| %>
           <tr onClick="window.location = $(this).find('a').attr('href');">
-            <td><%= link_to "#{I18n.t("date.month_names")[key]}", monthly_path(year: @year, month: key) %></td>
+            <td class="hidden-xs"><%= link_to "#{I18n.t("date.month_names")[key]}", monthly_path(year: @year, month: key) %></td>
+            <td class="visible-xs"><%= link_to "#{I18n.t("date.abbr_month_names")[key]}", monthly_path(year: @year, month: key) %></td>
             <td><%= number_to_currency(value[:stay], :unit => "R$") %></td>
             <td><%= number_to_currency(value[:consumption], :unit => "R$") %></td>
             <td><%= number_to_currency(value[:consumption] + value[:stay], :unit => "R$") %></td>

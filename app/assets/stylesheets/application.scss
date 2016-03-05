@@ -25,7 +25,7 @@ footer {
   padding-top: 10px;
   border-top: 1px solid #eaeaea;
   color: #777;
-  min-height: 160px;
+  min-height: 120px;
   background-color: #dedede;
 }
 
@@ -61,10 +61,12 @@ footer ul li {
   height: 95px;
   background: #353535;
   border-bottom: 2px #606060 solid;
+  margin-top:-10px;
 }
 
 .fixed-nav-bar h2 {
   color: #F0F0F0;
+  font-weight: bold;
 }
 
 .fixed-nav-bar a {
