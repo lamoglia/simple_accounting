@@ -12,7 +12,7 @@ class RecordsController < ApplicationController
     last_date = first_date.next_month.prev_day
     
     @date = first_date
-    @records = Record.where(date: first_date .. last_date)
+    @records = Record.where(date: first_date .. last_date).order('date ASC')
 
     @chart = build_monthly_chart(@records);
   end
