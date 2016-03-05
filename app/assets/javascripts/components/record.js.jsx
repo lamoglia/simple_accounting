@@ -61,7 +61,7 @@ var Record = React.createClass({
                 <td>
                   <a className="btn btn-success" onClick={this.handleEdit}>
                     <span className="glyphicon glyphicon-ok" ariaHidden="true" title="Update"></span>
-                  </a>
+                  </a>&nbsp;
                   <a className="btn btn-danger" onClick={this.handleToggle}>
                     <span className="glyphicon glyphicon-remove" ariaHidden="true" title="Undo"></span>
                   </a>
