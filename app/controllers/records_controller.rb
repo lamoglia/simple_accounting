@@ -82,7 +82,7 @@ class RecordsController < ApplicationController
         days << i
         consumptions << rec.consumption
         stays << rec.stay
-        
+
         if rec.date.saturday?
           if current_band.nil?
             current_band = {color: '#EEEEEE', from: i - 1.5, to:0}
@@ -110,10 +110,6 @@ class RecordsController < ApplicationController
         f.series(name: "Estadia", data: stays)
         f.series(name: "Consumo", data: consumptions)
 
-        f.yAxis [
-          {title: {text: "Valor (R$)"}, min: 0 }
-        ]
-
         f.legend(verticalAlign: 'bottom', horizontalAlign: 'right', layout: 'horizontal')
         f.chart({defaultSeriesType: "line", height: 300})
       end
@@ -125,10 +121,6 @@ class RecordsController < ApplicationController
         f.xAxis(categories: I18n.t('date.month_names').slice(1,12))
         f.series(name: "Estadia", data: all_total_stay)
         f.series(name: "Consumo", data: all_total_consumption)
-
-        f.yAxis [
-          {title: {text: "Valor (R$)"}, min: 0 }
-        ]
 
         f.legend(verticalAlign: 'bottom', horizontalAlign: 'right', layout: 'horizontal')
         f.chart({defaultSeriesType: "line", height: 300})
