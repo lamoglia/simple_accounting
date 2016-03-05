@@ -12,11 +12,11 @@ today = Date.today
 last_day_current_month = Date.new(today.year, today.month, 1).next_month.prev_day
 
 (first_day .. last_day_current_month).each do |date|
-  if(!Record.exists?(date: date)){
+  if !Record.exists?(date: date)
     record = Record.new
     record.date = date
     record.stay = 0
     record.consumption = 0
     record.save
-  }
+  end
 end
