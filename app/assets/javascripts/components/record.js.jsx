@@ -52,11 +52,16 @@ var Record = React.createClass({
                 </td>
             </tr>;
     },
+    handleKeyPress: function(e) {
+      if (e.key === 'Enter') {
+        this.handleEdit(e);
+      }
+    },
     recordForm: function() {
       return <tr>
                 <td>{dateFormat(this.props.record.date)}</td>
-                <td><input className="form-control" type="number" defaultValue={this.props.record.stay} ref="stay"></input></td>
-                <td><input className="form-control" type="number" defaultValue={this.props.record.consumption} ref="consumption"></input></td>
+                <td><input className="form-control" type="number" defaultValue={this.props.record.stay} ref="stay" onKeyPress={this.handleKeyPress}></input></td>
+                <td><input className="form-control" type="number" defaultValue={this.props.record.consumption} ref="consumption" onKeyPress={this.handleKeyPress}></input></td>
                 <td>{amountFormat(this.total())}</td>
                 <td>
                   <a className="btn btn-success" onClick={this.handleEdit}>
