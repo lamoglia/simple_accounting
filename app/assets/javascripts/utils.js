@@ -8,6 +8,11 @@ dateFormat = function(d) {
   return date.toLocaleDateString("pt-BR")
 }
 
+getDayFromDate = function(d) {
+  var parts = d.split('-');
+  return parts[2]
+}
+
 var formatter = new Intl.NumberFormat('pt-BR', {
   style: 'currency',
   currency: 'BRL',

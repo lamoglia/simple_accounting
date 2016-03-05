@@ -66,10 +66,10 @@ var Records = React.createClass({
                 <table className="table table-bordered table-hover">
                   <thead>
                     <tr>
-                      <th className="col-xs-2">Date</th>
-                      <th className="col-xs-2">Stay</th>
-                      <th className="col-xs-2">Consumption</th>
-                      <th className="col-xs-4">Total</th>
+                      <th className="col-xs-1">Day</th>
+                      <th className="col-xs-3">Stay</th>
+                      <th className="col-xs-3">Consumption</th>
+                      <th className="col-xs-3">Total</th>
                       <th className="col-xs-2">Actions</th>
                     </tr>
                   </thead>

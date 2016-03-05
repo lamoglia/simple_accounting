@@ -23,7 +23,7 @@
     </thead>
     <tbody>
       <% @summary.each do |key, value| %>
-        <tr>
+        <tr onClick="window.location = $(this).find('a').attr('href');">
           <td><%= link_to "#{Date::MONTHNAMES[key]}", monthly_path(year: @year, month: key) %></td>
           <td><%= number_to_currency(value[:stay], :unit => "R$") %></td>
           <td><%= number_to_currency(value[:consumption], :unit => "R$") %></td>

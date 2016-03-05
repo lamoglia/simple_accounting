@@ -6,7 +6,7 @@ var Record = React.createClass({
     },
     handleToggle: function(e) {
       e.preventDefault();
-      return this.setState({
+      this.setState({
         edit: !this.state.edit
       });
     },
@@ -41,7 +41,7 @@ var Record = React.createClass({
     },
     recordRow: function () {
       return <tr onClick={this.handleToggle}>
-                <td>{dateFormat(this.props.record.date)}</td>
+                <td>{getDayFromDate(this.props.record.date)}</td>
                 <td>{amountFormat(this.props.record.stay)}</td>
                 <td>{amountFormat(this.props.record.consumption)}</td>
                 <td>{amountFormat(this.total())}</td>
@@ -57,11 +57,17 @@ var Record = React.createClass({
         this.handleEdit(e);
       }
     },
+    handleKeyUp: function(e) {
+      e = e || window.event;
+      if (e.keyCode == 27) { //Esc
+        this.handleToggle(e);
+      }
+    },
     recordForm: function() {
       return <tr>
                 <td>{dateFormat(this.props.record.date)}</td>
-                <td><input className="form-control" type="number" defaultValue={this.props.record.stay} ref="stay" onKeyPress={this.handleKeyPress}></input></td>
-                <td><input className="form-control" type="number" defaultValue={this.props.record.consumption} ref="consumption" onKeyPress={this.handleKeyPress}></input></td>
+                <td><input className="form-control" type="number" defaultValue={this.props.record.stay} ref="stay" onKeyUp={this.handleKeyUp} onKeyPress={this.handleKeyPress}></input></td>
+                <td><input className="form-control" type="number" defaultValue={this.props.record.consumption} ref="consumption" onKeyUp={this.handleKeyUp} onKeyPress={this.handleKeyPress}></input></td>
                 <td>{amountFormat(this.total())}</td>
                 <td>
                   <a className="btn btn-success" onClick={this.handleEdit}>
