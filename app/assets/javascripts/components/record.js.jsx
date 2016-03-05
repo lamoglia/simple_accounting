@@ -65,7 +65,7 @@ var Record = React.createClass({
     },
     recordForm: function() {
       return <tr>
-                <td>{dateFormat(this.props.record.date)}</td>
+                <td>{getDayFromDate(this.props.record.date)}</td>
                 <td><input className="form-control" type="number" defaultValue={this.props.record.stay} ref="stay" onKeyUp={this.handleKeyUp} onKeyPress={this.handleKeyPress}></input></td>
                 <td><input className="form-control" type="number" defaultValue={this.props.record.consumption} ref="consumption" onKeyUp={this.handleKeyUp} onKeyPress={this.handleKeyPress}></input></td>
                 <td>{amountFormat(this.total())}</td>
