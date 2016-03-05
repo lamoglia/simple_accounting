@@ -40,7 +40,7 @@ var Record = React.createClass({
       });
     },
     recordRow: function () {
-      return <tr onClick={this.handleToggle}>
+      return <tr onClick={this.handleToggle} className={dateIsWeekend(this.props.record.date)? 'row-weekend' : ''}>
                 <td>{getDayFromDate(this.props.record.date)}</td>
                 <td>{amountFormat(this.props.record.stay)}</td>
                 <td>{amountFormat(this.props.record.consumption)}</td>
@@ -64,7 +64,7 @@ var Record = React.createClass({
       }
     },
     recordForm: function() {
-      return <tr>
+      return <tr className={dateIsWeekend(this.props.record.date)? 'row-weekend' : ''}>
                 <td>{getDayFromDate(this.props.record.date)}</td>
                 <td><input className="form-control" type="number" defaultValue={this.props.record.stay} ref="stay" onKeyUp={this.handleKeyUp} onKeyPress={this.handleKeyPress}></input></td>
                 <td><input className="form-control" type="number" defaultValue={this.props.record.consumption} ref="consumption" onKeyUp={this.handleKeyUp} onKeyPress={this.handleKeyPress}></input></td>

@@ -75,16 +75,38 @@ class RecordsController < ApplicationController
       days = Array.new
 
       i = 1
+
+      plot_bands = Array.new
+      current_band = {color: '#EEEEEE', from:-1, to:0}
       @records.each do |rec| 
         days << i
         consumptions << rec.consumption
         stays << rec.stay
+        
+        if rec.date.saturday?
+          if current_band.nil?
+            current_band = {color: '#EEEEEE', from: i - 1.5, to:0}
+          else
+            current_band[:from] = i - 1.5
+          end
+        elsif rec.date.sunday?
+          current_band[:to] = i - 0.5
+          plot_bands << current_band.clone
+          current_band = nil
+        end
+
         i += 1
+      end
+
+      if !current_band.nil?
+        current_band[:to] = i - 0.5
+        plot_bands << current_band
       end
 
       LazyHighCharts::HighChart.new('graph') do |f|
         f.title(text: "Valores por dia")
-        f.xAxis(categories: days)
+        f.xAxis({categories: days, plotBands: plot_bands})
+
         f.series(name: "Estadia", data: stays)
         f.series(name: "Consumo", data: consumptions)
 
