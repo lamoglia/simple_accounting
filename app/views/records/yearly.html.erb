@@ -3,9 +3,14 @@
 <%= link_to "<< #{@year.to_i - 1}", yearly_path(year: @year.to_i - 1), title: "#{@year.to_i - 1}" %>&nbsp;|
 <%= link_to "#{@year.to_i + 1} >>", yearly_path(year: @year.to_i + 1), title: "#{@year.to_i + 1}" %>
 </br>
-</br>
 <%= high_chart("some_id", @chart) %>
 </br>
+<div class="row">
+  <%= react_component 'AmountBox', { type: "success", amount: @summary.values.reduce(0) {|sum,val| sum + val[:stay]}, text: "Total stay"} %>
+  <%= react_component 'AmountBox', { type: "success", amount: @summary.values.reduce(0) {|sum,val| sum + val[:consumption]}, text: "Total consumption"} %>
+  <%= react_component 'AmountBox', { type: "info", amount: @summary.values.reduce(0) {|sum,val| sum + val[:consumption] + val[:stay]}, text: "Total"} %>
+</div>
+<hr/>
 <div class="table-responsive">
   <table class="table table-bordered table-hover">
     <thead>
