@@ -1,8 +1,12 @@
-<%# app/views/records/show.html.erb %>
-<h2><%= I18n.t('date.month_names')[@date.month.to_i] %> / <%= link_to "#{@date.year}", yearly_path(year: @date.year) %></h2>
-<%= link_to "<< #{I18n.t('date.month_names')[@date.prev_month.month.to_i]}", monthly_path(year: @date.prev_month.year , month: @date.prev_month.month ), title: I18n.t('date.month_names')[@date.prev_month.month.to_i] %>&nbsp;|
-<%= link_to "#{I18n.t('date.month_names')[@date.next_month.month.to_i]} >>", monthly_path(year: @date.next_month.year , month: @date.next_month.month ), title: I18n.t('date.month_names')[@date.next_month.month.to_i] %>
-</br>
-<%= high_chart("some_id", @chart) %>
-</br>
-<%= react_component 'Records', { data: @records } %>
+<div class="fixed-nav-bar">
+  <div class="container">
+    <h2><%= I18n.t('date.month_names')[@date.month.to_i] %> / <%= link_to "#{@date.year}", yearly_path(year: @date.year) %></h2>
+    <%= link_to "<< #{I18n.t('date.month_names')[@date.prev_month.month.to_i]}", monthly_path(year: @date.prev_month.year , month: @date.prev_month.month ), title: I18n.t('date.month_names')[@date.prev_month.month.to_i] %>&nbsp;|
+    <%= link_to "#{I18n.t('date.month_names')[@date.next_month.month.to_i]} >>", monthly_path(year: @date.next_month.year , month: @date.next_month.month ), title: I18n.t('date.month_names')[@date.next_month.month.to_i] %>
+  </div>
+</div>
+<div class="content">
+  <%= high_chart("some_id", @chart) %>
+  </br>
+  <%= react_component 'Records', { data: @records } %>
+</div>

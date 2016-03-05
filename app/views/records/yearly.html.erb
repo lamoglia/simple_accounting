@@ -1,35 +1,40 @@
 <%# app/views/records/yearly.html.erb %>
-<h2><%= @year %></h2>
-<%= link_to "<< #{@year.to_i - 1}", yearly_path(year: @year.to_i - 1), title: "#{@year.to_i - 1}" %>&nbsp;|
-<%= link_to "#{@year.to_i + 1} >>", yearly_path(year: @year.to_i + 1), title: "#{@year.to_i + 1}" %>
-</br>
-<%= high_chart("some_id", @chart) %>
-</br>
-<div class="row">
-  <%= react_component 'AmountBox', { type: "success", amount: @summary.values.reduce(0) {|sum,val| sum + val[:stay]}, text: "Total estadia"} %>
-  <%= react_component 'AmountBox', { type: "success", amount: @summary.values.reduce(0) {|sum,val| sum + val[:consumption]}, text: "Total consumo"} %>
-  <%= react_component 'AmountBox', { type: "info", amount: @summary.values.reduce(0) {|sum,val| sum + val[:consumption] + val[:stay]}, text: "Total"} %>
+<div class="fixed-nav-bar">
+  <div class="container">
+    <h2><%= @year %></h2>
+    <%= link_to "<< #{@year.to_i - 1}", yearly_path(year: @year.to_i - 1), title: "#{@year.to_i - 1}" %>&nbsp;|
+    <%= link_to "#{@year.to_i + 1} >>", yearly_path(year: @year.to_i + 1), title: "#{@year.to_i + 1}" %>
+  </div>
 </div>
-<hr/>
-<div class="table-responsive">
-  <table class="table table-bordered table-hover">
-    <thead>
-      <tr>
-        <th class="col-xs-2">Mês</th>
-        <th class="col-xs-3">Estadia</th>
-        <th class="col-xs-3">Consumo</th>
-        <th class="col-xs-4">Total</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @summary.each do |key, value| %>
-        <tr onClick="window.location = $(this).find('a').attr('href');">
-          <td><%= link_to "#{I18n.t("date.month_names")[key]}", monthly_path(year: @year, month: key) %></td>
-          <td><%= number_to_currency(value[:stay], :unit => "R$") %></td>
-          <td><%= number_to_currency(value[:consumption], :unit => "R$") %></td>
-          <td><%= number_to_currency(value[:consumption] + value[:stay], :unit => "R$") %></td>
+<div class="content">
+  <%= high_chart("some_id", @chart) %>
+  </br>
+  <div class="row">
+    <%= react_component 'AmountBox', { type: "success", amount: @summary.values.reduce(0) {|sum,val| sum + val[:stay]}, text: "Total estadia"} %>
+    <%= react_component 'AmountBox', { type: "success", amount: @summary.values.reduce(0) {|sum,val| sum + val[:consumption]}, text: "Total consumo"} %>
+    <%= react_component 'AmountBox', { type: "info", amount: @summary.values.reduce(0) {|sum,val| sum + val[:consumption] + val[:stay]}, text: "Total"} %>
+  </div>
+  <hr/>
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th class="col-xs-2">Mês</th>
+          <th class="col-xs-3">Estadia</th>
+          <th class="col-xs-3">Consumo</th>
+          <th class="col-xs-4">Total</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @summary.each do |key, value| %>
+          <tr onClick="window.location = $(this).find('a').attr('href');">
+            <td><%= link_to "#{I18n.t("date.month_names")[key]}", monthly_path(year: @year, month: key) %></td>
+            <td><%= number_to_currency(value[:stay], :unit => "R$") %></td>
+            <td><%= number_to_currency(value[:consumption], :unit => "R$") %></td>
+            <td><%= number_to_currency(value[:consumption] + value[:stay], :unit => "R$") %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
