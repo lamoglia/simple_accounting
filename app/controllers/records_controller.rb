@@ -100,7 +100,7 @@ class RecordsController < ApplicationController
     def build_yearly_chart(all_total_stay, all_total_consumption)
       LazyHighCharts::HighChart.new('graph') do |f|
         f.title(text: "Valores por mês")
-        f.xAxis(categories: Date::MONTHNAMES.slice(1,12))
+        f.xAxis(categories: I18n.t('date.month_names').slice(1,12))
         f.series(name: "Estadia", data: all_total_stay)
         f.series(name: "Consumo", data: all_total_consumption)
 
