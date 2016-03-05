@@ -3,6 +3,6 @@
 <%= link_to "<< #{Date::MONTHNAMES[@date.prev_month.month.to_i]}", monthly_path(year: @date.prev_month.year , month: @date.prev_month.month ), title: Date::MONTHNAMES[@date.prev_month.month.to_i] %>&nbsp;|
 <%= link_to "#{Date::MONTHNAMES[@date.next_month.month.to_i]} >>", monthly_path(year: @date.next_month.year , month: @date.next_month.month ), title: Date::MONTHNAMES[@date.next_month.month.to_i] %>
 </br>
-</br>
+<%= high_chart("some_id", @chart) %>
 </br>
 <%= react_component 'Records', { data: @records } %>

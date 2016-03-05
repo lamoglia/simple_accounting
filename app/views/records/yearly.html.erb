@@ -4,6 +4,7 @@
 <%= link_to "#{@year.to_i + 1} >>", yearly_path(year: @year.to_i + 1), title: "#{@year.to_i + 1}" %>
 </br>
 </br>
+<%= high_chart("some_id", @chart) %>
 </br>
 <div class="table-responsive">
   <table class="table table-bordered table-hover">

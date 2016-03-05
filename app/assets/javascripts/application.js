@@ -18,3 +18,6 @@
 //= require react_ujs
 //= require components
 //= require_tree .
+
+//= require highcharts/highcharts
+//= require highcharts/highcharts-more
