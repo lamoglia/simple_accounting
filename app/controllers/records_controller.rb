@@ -106,6 +106,7 @@ class RecordsController < ApplicationController
       LazyHighCharts::HighChart.new('graph') do |f|
         f.title(text: "Valores por dia")
         f.xAxis({categories: days, plotBands: plot_bands})
+        f.yAxis({min: 0})
 
         f.series(name: "Estadia", data: stays)
         f.series(name: "Consumo", data: consumptions)
@@ -119,6 +120,7 @@ class RecordsController < ApplicationController
       LazyHighCharts::HighChart.new('graph') do |f|
         f.title(text: "Valores por mês")
         f.xAxis(categories: I18n.t('date.abbr_month_names').slice(1,12))
+        f.yAxis({min: 0})
         f.series(name: "Estadia", data: all_total_stay)
         f.series(name: "Consumo", data: all_total_consumption)
 
